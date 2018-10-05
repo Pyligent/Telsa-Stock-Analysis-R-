@@ -1,0 +1,2 @@
+# Time-Serires
+we will get the Tesla Company’s stock information (NASDAQ: TSLA) through the Yahoo Finance. Then we will apply the time series analysis methods to investigate the TSLA’s basic information, decompose the TLSA’s time series. First, we will use the exponential smoothing methods to forecast the TSLA’s price in the coming 365 days, and then we will use the ARIMA model to predict the price. We also will check the Then we forecast error distribution to check the model’s performance.
