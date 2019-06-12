@@ -13,11 +13,11 @@ Decomposing a time series means separating it into its constituent components, w
  
 ### Forecast Model and Evaluation: Exponential Smoothing
 
-- Exponential Smoothing Model
+- Exponential Smoothing Model    
 Exponential Smoothing model can be used to make the short-term forecasts for time series data. From the TSLA data, we know it can be described as the additive model with no seasonality. From the trend chart, we can see the random fluctuations in the time series seem to be roughly constant in size over time. So we will use the HoltWinter() function to fit a simple exponential smoothing prediction.
 
 
-### 7.1.2.2	Evaluation 
+### 7.1.2.2	Evaluation    
 As a measure of the accuracy of the forecasts, we can calculate the sum of squared errors for the in-sample forecast errors, that is, the forecast errors for the time period covered by our original time series. The sum-of-squared-errors is stored in a named element of the list variable 
 - logTeslaStockDataForecast$SSE
 ![ts_log](ts_log.png)   
