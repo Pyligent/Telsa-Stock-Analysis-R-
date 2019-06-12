@@ -8,7 +8,7 @@ This project also will check the Then we forecast error distribution to check th
 ### Decompose the Time Series
 
 Decomposing a time series means separating it into its constituent components, which are usually a trend component and an irregular component, and if it is a seasonal time series, a seasonal component. For the TSLA stock information, from the price trend plot figure, we can see that there is not seasonal component inside the data. But this time series data should include a trend component and an irregular component. Decomposing the time series involves trying to separate the time series into these components, that is, estimating the trend component and the irregular component. We will SMA() function to smooth TSLA data. We will choose the different order (n=8 and n=40) to check the trend component. The goal is that we try to smoothed the data with a simple move average.
-![ts_log1](/img/ts_log1.png)
+![ts_log1](ts_log1.png)
 
  
 ### Forecast Model and Evaluation: Exponential Smoothing
