@@ -20,11 +20,11 @@ Exponential Smoothing model can be used to make the short-term forecasts for tim
 ### 7.1.2.2	Evaluation 
 As a measure of the accuracy of the forecasts, we can calculate the sum of squared errors for the in-sample forecast errors, that is, the forecast errors for the time period covered by our original time series. The sum-of-squared-errors is stored in a named element of the list variable 
 - logTeslaStockDataForecast$SSE
-![ts_log](/img/ts_log.png)   
+![ts_log](ts_log.png)   
 
-![ts_holt](/img/ts_holt.png)
+![ts_holt](ts_holt.png)
 The forecast errors are stored in logTeslaStockDataForecast$residuals. HoltWinters(). If the predictive model cannot be improved upon, there should be no correlations between forecast errors for successive predictions. In other words, if there are correlations between forecast errors for successive predictions, it is likely that the simple exponential smoothing forecasts could be improved upon by another forecasting model.
-![ts_hfor](/img/ts_hfor.png)
+![ts_hfor](ts_hfor.png)
 To figure out whether this is the case, we can obtain a correlogram of the in-sample forecast errors for lags 1-40 and calculate a correlogram of the forecast errors using the “acf()” function in R. To specify the maximum lag that we want to look at, we use the “lag.max” parameter in acf().
 To test whether there is significant evidence for non-zero correlations at lags 1-20, we can carry out a Ljung-Box test by using the “Box.test()”, function. The maximum lag(40) that we want to look at is specified using the “lag” parameter in the Box.test() function.
 Box.test(logTeslaStockDataForecast2$residuals, lag=40, type="Ljung-Box")
@@ -35,7 +35,7 @@ We will use plotForecastErrors() to check whether the forecast errors are normal
 The plot shows that the distribution of forecast errors is roughly centered on zero, and is more or less normally distributed. It is plausible that the forecast errors are normally distributed with mean zero.
 The Ljung-Box test showed that there is little evidence of non-zero autocorrelations in forecast
 errors, and the distribution of forecast errors seems to be normally distributed with mean zero. This suggests that the simple exponential smoothing method provides an adequate predictive model are probably valid.
-![ts_hist(ts_hist.png)]
+![ts_hist](ts_hist.png)
 
 
 ### Forecast Model and Evaluation: ARIMA Model
@@ -45,12 +45,12 @@ ARIMA Model
 ARIMA (Autoregressive Integrated Moving Average) is a major tool used in time series analysis to attempt to forecast future values of a variable based on its present value. ARIMA(p,d,q) forecasting equation: ARIMA models are, in theory, the most general class of models for forecasting a time series which can be made to be “stationary” by differencing. ARIMA models are defined for stationary time series. Therefore, if you start off with a non-stationary time series, you will first need to ‘difference’ the time series until you obtain a stationary time series.  To difference the time series d times to obtain a stationary series, we use the diff() function. Then we will use the A formal ADF test does not reject the null hypothesis of non-stationarity, confirming our visual inspection: 
 - Stationarized the Time Series
 adf.test(logTeslaStockData)
-![ts_aradf](/img/ts_aradf.png)
+![ts_aradf](ts_aradf.png)
 
 We can see the ADF.test result. Before diff(), the p-value is 0.7165 and after diff(), the p-value is 0.01. So logTeslaStockData_Diff1 is the stationary time series and ready for ARIMA model.
 The next thing we will plot the ACF and PACF value.
 acf(logTeslaStockData_Diff1, lag.max = 40)
-![ts_ar40](/img/ts_ar40.png)
+![ts_ar40](ts_ar40.png)
 
 
 
@@ -66,15 +66,15 @@ The plot shows that the distribution of forecast errors is roughly centered on z
 In this case, we use the auto.arima() to forecast the price. But the model parameters show the model is ARIMA(0,0,0). So, we can be sure that there is white noise in this time series data. So it means that the errors are uncoorelated across time, but is does not imply the size of errors or indication of good or bad model. So based on natural log time series data, we will choose ARIMA(0,1,0) to forecast the price.
 Comparing with the result of ARIMA(0,0,0), ARIMA(0,1,0) has better result. It proved the we should be very careful to choose the auto.arima and choose right parameter to build the forecast model.
 
-![AR010](/img/ts_ar010.png)
-![AR010RES](/img/ts_arres.png)
-![ARERR](/img/ts_arerr.png)
+![AR010](ts_ar010.png)
+![AR010RES](ts_arres.png)
+![ARERR](ts_arerr.png)
 
 ### Summary
 
 In this section, we use the TESLA stock data as time series. We decompose it and use the HoltWinter exponential smoothing and ARIMA to forecast the future stock price. The basic procedures are as the following figure.
  
 The other thing is we should always to analysis the errors and tune model parameters to achieve the better results.
-![summary](/img/ts_summary.png)
+![summary](ts_summary.png)
 
 
